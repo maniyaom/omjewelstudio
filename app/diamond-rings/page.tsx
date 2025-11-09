@@ -96,64 +96,53 @@ export default function DiamondRings({ searchParams }: DiamondRingsPageProps) {
   };
 
   const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Diamond Rings Collection",
-    "description": "Lab grown diamond rings - HPHT, CVD, fancy shape and fancy colour diamond rings for weddings and engagements",
-    "numberOfItems": "Contact for full catalog",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@type": "Product",
-          "name": "Lab Grown Diamond Rings",
-          "category": "Diamond Rings",
-          "brand": "Om Jewel Studio"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "item": {
-          "@type": "Product",
-          "name": "HPHT Diamond Rings",
-          "category": "Diamond Rings",
-          "brand": "Om Jewel Studio"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@type": "Product",
-          "name": "CVD Diamond Rings",
-          "category": "Diamond Rings",
-          "brand": "Om Jewel Studio"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "item": {
-          "@type": "Product",
-          "name": "Fancy Shape Diamond Rings",
-          "category": "Diamond Rings",
-          "brand": "Om Jewel Studio"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 5,
-        "item": {
-          "@type": "Product",
-          "name": "Fancy Colour Diamond Rings",
-          "category": "Diamond Rings",
-          "brand": "Om Jewel Studio"
-        }
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Diamond Rings Collection",
+  "description": "Lab grown diamond rings - HPHT, CVD, fancy shape and fancy colour diamond rings for weddings and engagements",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Thing",
+        "name": "Lab Grown Diamond Rings"
       }
-    ]
-  };
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Thing",
+        "name": "HPHT Diamond Rings"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Thing",
+        "name": "CVD Diamond Rings"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Thing",
+        "name": "Fancy Shape Diamond Rings"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Thing",
+        "name": "Fancy Colour Diamond Rings"
+      }
+    }
+  ]
+};
 
   return (
     <>
