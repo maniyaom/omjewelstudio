@@ -17,7 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       (entries) => {
         entries.forEach((entry) => {
           setIsVisible(entry.isIntersecting);
-          
+
           if (videoRef.current) {
             if (entry.isIntersecting) {
               videoRef.current.play().catch(() => {
@@ -64,7 +64,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   // Generate descriptive aria-label for the product card
   const getAriaLabel = () => {
     const categoryName = categories[product.category] || "diamond jewellery";
-    return `${product.name} - ${categoryName}${product.isFeatured ? ' - Popular item' : ''}. Contact us via phone or email for pricing and details.`;
+    return `${product.name} - ${categoryName}${
+      product.isFeatured ? " - Popular item" : ""
+    }. Contact us via phone or email for pricing and details.`;
   };
 
   return (
@@ -73,24 +75,22 @@ export default function ProductCard({ product }: ProductCardProps) {
       className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300"
       aria-label={getAriaLabel()}
       itemScope
-      itemType="https://schema.org/Product"
+      itemType="https://schema.org/Thing"
     >
       {/* Hidden meta tags for SEO */}
       <meta itemProp="name" content={product.name} />
       <meta itemProp="category" content={categories[product.category]} />
-      <meta itemProp="brand" content="Om Jewel Studio" />
-      <meta itemProp="description" content={`${product.name} - ${categories[product.category]} featuring certified lab grown diamonds`} />
-      
+
       <div className="relative overflow-hidden aspect-square">
         {product.isFeatured && (
-          <div 
+          <div
             className="absolute top-4 left-4 bg-gray-900 text-white px-3 py-1 text-xs font-semibold rounded-full z-10"
             aria-label="Popular product"
           >
             POPULAR
           </div>
         )}
-        
+
         {product.videoURL ? (
           <video
             ref={videoRef}
@@ -113,31 +113,27 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
       </div>
-      
+
       <div className="p-4">
         <div className="flex items-center gap-2 mb-2">
           <Tag size={14} className="text-gray-500" aria-hidden="true" />
-          <span 
+          <span
             className="text-xs font-medium text-gray-600 uppercase tracking-wide"
             itemProp="category"
           >
             {categories[product.category]}
           </span>
         </div>
-        
-        <h3 
+
+        <h3
           className="text-lg font-semibold text-gray-900 mb-2"
           itemProp="name"
         >
           {product.name}
         </h3>
-        
+
         {/* Offer schema for contact-based pricing */}
-        <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
-          <meta itemProp="priceCurrency" content="INR" />
-          <meta itemProp="availability" content="https://schema.org/InStock" />
-          <meta itemProp="priceSpecification" content="Contact for pricing" />
-          
+        <div>
           <div className="flex flex-col gap-2 mt-4">
             <button
               onClick={handleCall}
@@ -148,7 +144,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               <Phone size={18} aria-hidden="true" />
               <span>Call for Price</span>
             </button>
-            
+
             <button
               onClick={handleEmail}
               className="cursor-pointer flex-1 flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2.5 rounded-lg font-medium transition-colors duration-200"
