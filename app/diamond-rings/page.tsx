@@ -3,7 +3,6 @@ export const dynamic = "force-dynamic";
 import CategoryPage from "@/components/Category";
 import { categoryInfo } from "@/data";
 import { Metadata } from "next";
-import Script from "next/script";
 import Link from "next/link";
 
 interface DiamondRingsPageProps {
@@ -54,121 +53,9 @@ export default function DiamondRings({ searchParams }: DiamondRingsPageProps) {
   const info = categoryInfo["diamond-rings"];
 
   // Structured Data for Diamond Rings Collection
-  const collectionSchema = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Diamond Rings Collection",
-    "description": "Premium diamond rings featuring certified lab grown diamonds - HPHT, CVD, fancy shape and fancy colour diamond rings",
-    "url": "https://www.omjewelstudio.co.in/diamond-rings",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Om Jewel Studio",
-      "url": "https://www.omjewelstudio.co.in"
-    },
-    "about": {
-      "@type": "Product",
-      "name": "Diamond Rings",
-      "category": "Jewelry",
-      "brand": {
-        "@type": "Brand",
-        "name": "Om Jewel Studio"
-      }
-    }
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.omjewelstudio.co.in"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Diamond Rings",
-        "item": "https://www.omjewelstudio.co.in/diamond-rings"
-      }
-    ]
-  };
-
-  const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Diamond Rings Collection",
-  "description": "Lab grown diamond rings - HPHT, CVD, fancy shape and fancy colour diamond rings for weddings and engagements",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@type": "Thing",
-        "name": "Lab Grown Diamond Rings"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@type": "Thing",
-        "name": "HPHT Diamond Rings"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@type": "Thing",
-        "name": "CVD Diamond Rings"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "item": {
-        "@type": "Thing",
-        "name": "Fancy Shape Diamond Rings"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "item": {
-        "@type": "Thing",
-        "name": "Fancy Colour Diamond Rings"
-      }
-    }
-  ]
-};
 
   return (
     <>
-      {/* JSON-LD Structured Data */}
-      <Script
-        id="collection-schema-diamond-rings"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(collectionSchema)
-        }}
-      />
-      <Script
-        id="breadcrumb-schema-diamond-rings"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema)
-        }}
-      />
-      <Script
-        id="product-schema-diamond-rings"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productSchema)
-        }}
-      />
-
       <div className="bg-white">
         {/* Breadcrumb Navigation for SEO */}
         <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
