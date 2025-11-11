@@ -47,12 +47,12 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const handleCall = (e: React.MouseEvent) => {
     e.stopPropagation();
-    window.location.href = `tel:+123456789012`;
+    window.location.href = `tel:+919998448075`;
   };
 
   const handleEmail = (e: React.MouseEvent) => {
     e.stopPropagation();
-    window.location.href = `mailto:test@gmail.com`;
+    window.location.href = `mailto:yogeshmaniya503@gmail.com`;
   };
 
   // Generate SEO-friendly alt text based on product details
