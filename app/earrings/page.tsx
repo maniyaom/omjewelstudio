@@ -7,7 +7,7 @@ import Script from "next/script";
 import Link from "next/link";
 
 interface EarringsPageProps {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 }
 
 // SEO Metadata for Diamond Earrings Page
@@ -50,8 +50,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Earrings({ searchParams }: EarringsPageProps) {
+export default async function Earrings({ searchParams }: EarringsPageProps) {
   const info = categoryInfo["earrings"];
+  const resolvedSearchParams = await searchParams;
 
   // Structured Data for Diamond Earrings Collection
   const collectionSchema = {
@@ -275,7 +276,7 @@ export default function Earrings({ searchParams }: EarringsPageProps) {
         </section>
 
         {/* Product Grid Section */}
-        <CategoryPage category="earrings" searchParams={searchParams} />
+        <CategoryPage category="earrings" searchParams={resolvedSearchParams} />
 
         {/* Internal Linking Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200">

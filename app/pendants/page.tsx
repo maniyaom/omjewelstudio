@@ -6,8 +6,8 @@ import { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 
-interface PendantsPageProps {
-  searchParams: { page?: string };
+  interface PendantsPageProps {
+  searchParams: Promise<{ page?: string }>;
 }
 
 // SEO Metadata for Diamond Pendants Page
@@ -50,8 +50,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PendantsPage({ searchParams }: PendantsPageProps) {
+export default async function PendantsPage({ searchParams }: PendantsPageProps) {
   const info = categoryInfo["pendants"];
+
+  const resolvedSearchParams = await searchParams;
 
   // Structured Data for Diamond Pendants Collection
   const collectionSchema = {
@@ -275,7 +277,7 @@ export default function PendantsPage({ searchParams }: PendantsPageProps) {
         </section>
 
         {/* Product Grid Section */}
-        <CategoryPage category="pendants" searchParams={searchParams} />
+        <CategoryPage category="pendants" searchParams={resolvedSearchParams} />
 
         {/* Internal Linking Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200">
