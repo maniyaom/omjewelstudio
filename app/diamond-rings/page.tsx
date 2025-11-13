@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 interface DiamondRingsPageProps {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 }
 
 // SEO Metadata for Diamond Rings Page
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "Om Jewel Studio",
     images: [
       {
-        url: "/og-diamond-rings.jpg", // Add this image to your public folder
+        url: "/og-diamond-rings.jpg",
         width: 1200,
         height: 630,
         alt: "Diamond Rings Collection - Om Jewel Studio",
@@ -49,10 +49,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function DiamondRings({ searchParams }: DiamondRingsPageProps) {
+export default async function DiamondRings({ searchParams }: DiamondRingsPageProps) {
   const info = categoryInfo["diamond-rings"];
-
-  // Structured Data for Diamond Rings Collection
+  
+  // Await the searchParams if it's a Promise (Next.js 15+)
+  const resolvedSearchParams = await searchParams;
 
   return (
     <>
@@ -150,8 +151,8 @@ export default function DiamondRings({ searchParams }: DiamondRingsPageProps) {
           </div>
         </section>
 
-        {/* Product Grid Section */}
-        <CategoryPage category="diamond-rings" searchParams={searchParams} />
+        {/* Product Grid Section - Pass the resolved searchParams */}
+        <CategoryPage category="diamond-rings" searchParams={resolvedSearchParams} />
 
         {/* Internal Linking Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200">
