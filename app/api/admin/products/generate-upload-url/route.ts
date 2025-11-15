@@ -71,13 +71,13 @@ export async function POST(req: NextRequest) {
       accountKey
     );
 
-    // ==================== Generate SAS Token ====================
+    // ==================== Generate SAS Token with proper permissions ====================
     const sasOptions = {
       containerName,
       blobName: uniqueFileName,
-      permissions: BlobSASPermissions.parse("cw"), // create and write
-      startsOn: new Date(),
-      expiresOn: new Date(new Date().valueOf() + 3600 * 1000), // 1 hour expiry
+      permissions: BlobSASPermissions.parse("racwd"), // read, add, create, write, delete
+      startsOn: new Date(new Date().valueOf() - 5 * 60 * 1000), // Start 5 minutes ago to account for clock skew
+      expiresOn: new Date(new Date().valueOf() + 2 * 60 * 60 * 1000), // 2 hour expiry (for large file uploads)
     };
 
     const sasToken = generateBlobSASQueryParameters(
@@ -88,6 +88,10 @@ export async function POST(req: NextRequest) {
     // ==================== Construct URLs ====================
     const blobUrl = `https://${accountName}.blob.core.windows.net/${containerName}/${uniqueFileName}`;
     const uploadUrl = `${blobUrl}?${sasToken}`;
+
+    console.log("Generated upload URL successfully for:", uniqueFileName);
+    console.log("SAS token permissions:", sasOptions.permissions.toString());
+    console.log("SAS token expires:", sasOptions.expiresOn);
 
     return NextResponse.json(
       {
